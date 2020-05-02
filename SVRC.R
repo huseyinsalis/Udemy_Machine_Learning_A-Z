@@ -19,7 +19,7 @@ dataset = dataset[1:2]
 # Fitting the Regression Model to the dataset
 #install.packages('e1071')
 library(e1071)
-regressor=svm(formula=Salary ~ .,
+regressor=svm(formula=Impedance ~ .,
               data=dataset,
               type='eps-regression')
 
@@ -30,23 +30,23 @@ y_pred = predict(regressor, data.frame(Level = 6.5))
 # install.packages('ggplot2')
 library(ggplot2)
 ggplot() +
-  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+  geom_point(aes(x = dataset$ï..Length, y = dataset$Impedance),
              colour = 'red') +
-  geom_line(aes(x = dataset$Level, y = predict(regressor, newdata = dataset)),
+  geom_line(aes(x = dataset$ï..Length, y = predict(regressor, newdata = dataset)),
             colour = 'blue') +
-  ggtitle('Truth or Bluff (Regression Model)') +
-  xlab('Level') +
-  ylab('Salary')
+  ggtitle('Support Vector Regression Model (Normal)') +
+  xlab('Length') +
+  ylab('Impedance')
 
 # Visualising the Regression Model results (for higher resolution and smoother curve)
 # install.packages('ggplot2')
 library(ggplot2)
-x_grid = seq(min(dataset$Level), max(dataset$Level), 0.1)
+x_grid = seq(min(dataset$ï..Length), max(dataset$ï..Length), 0.1)
 ggplot() +
-  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+  geom_point(aes(x = dataset$ï..Length, y = dataset$Impedance),
              colour = 'red') +
-  geom_line(aes(x = x_grid, y = predict(regressor, newdata = data.frame(Level = x_grid))),
+  geom_line(aes(x = x_grid, y = predict(regressor, newdata = data.frame(ï..Length = x_grid))),
             colour = 'blue') +
-  ggtitle('Truth or Bluff (Regression Model)') +
-  xlab('Level') +
-  ylab('Salary')
+  ggtitle('Support Vector Regression Model') +
+  xlab('Length') +
+  ylab('Impedance')
